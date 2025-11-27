@@ -1,73 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  initHamburgerMenu();
   initRevealOnScroll();
   initStickyCtaOnScroll();
   initSmoothScroll();
   initFormSubmit();
   initEventTracking();
 });
-
-function initHamburgerMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuOverlay = document.getElementById('menu-overlay');
-  const body = document.body;
-
-  if (!hamburger || !mobileMenu || !menuOverlay) return;
-
-  function openMenu() {
-    hamburger.classList.add('active');
-    mobileMenu.classList.add('open');
-    menuOverlay.classList.add('visible');
-    body.classList.add('menu-open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    menuOverlay.setAttribute('aria-hidden', 'false');
-
-    mobileMenu.querySelector('a').focus();
-  }
-
-  function closeMenu() {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-    menuOverlay.classList.remove('visible');
-    body.classList.remove('menu-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    menuOverlay.setAttribute('aria-hidden', 'true');
-  }
-
-  function toggleMenu() {
-    const isOpen = hamburger.classList.contains('active');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  }
-
-  hamburger.addEventListener('click', toggleMenu);
-
-  menuOverlay.addEventListener('click', closeMenu);
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      closeMenu();
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && hamburger.classList.contains('active')) {
-      closeMenu();
-      hamburger.focus();
-    }
-  });
-
-  const mediaQuery = window.matchMedia('(min-width: 769px)');
-  mediaQuery.addEventListener('change', (e) => {
-    if (e.matches && hamburger.classList.contains('active')) {
-      closeMenu();
-    }
-  });
-}
 
 function initRevealOnScroll() {
   const observerOptions = {
