@@ -311,6 +311,22 @@ a:hover {
   margin-top: 1.5rem;
 }
 
+.google-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .google-buttons {
+    flex-direction: row;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+}
+
 .section-google {
   background-color: var(--bg);
 }
