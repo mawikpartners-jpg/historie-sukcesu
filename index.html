@@ -146,6 +146,46 @@
     </script>
   </head>
   <body>
+    <header class="site-header" role="banner">
+      <div class="container header-container">
+        <div class="logo">
+          <a href="#hero" aria-label="Strona główna">Biuro Nieruchomości Północ</a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="desktop-nav" role="navigation" aria-label="Główna nawigacja">
+          <ul>
+            <li><a href="#opinie-wideo">Opinie</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#dlaczego">O nas</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobilne">
+      <ul>
+        <li><a href="#opinie-wideo">Opinie wideo</a></li>
+        <li><a href="#opinie-google">Opinie Google</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#dlaczego">Dlaczego my</a></li>
+        <li><a href="#faq">Najczęstsze pytania</a></li>
+        <li><a href="#kontakt" class="mobile-cta">Umów spotkanie</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <a href="tel:+48123456789" class="mobile-phone">📞 +48 123 456 789</a>
+      </div>
+    </nav>
+
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
     <section id="hero" class="hero">
       <div class="container">
         <h1 class="reveal">Zaufanie, które widać. Sprzedaż, która się opłaca.</h1>
