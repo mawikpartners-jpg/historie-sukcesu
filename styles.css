@@ -370,16 +370,6 @@ a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.testimonial::before {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 32px;
-  background-color: #4285f4;
-  border-radius: 50%;
-  margin-bottom: 0.75rem;
-  position: relative;
-}
 
 .testimonial p {
   font-size: 0.95rem;
