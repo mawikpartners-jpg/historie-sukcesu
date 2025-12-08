@@ -1,5 +1,3 @@
-import { getReviews, formatReviews } from './db.js';
-
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initRevealOnScroll();
@@ -7,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initFormSubmit();
   initEventTracking();
-  loadReviews();
 });
 
 function initMobileNav() {
@@ -173,35 +170,4 @@ function initEventTracking() {
       console.log('Event: cta_click', button.textContent.trim());
     });
   });
-}
-
-async function loadReviews() {
-  const testimonialsContainer = document.querySelector('.testimonials');
-  if (!testimonialsContainer) return;
-
-  try {
-    const reviews = await getReviews();
-    const formattedReviews = formatReviews(reviews);
-
-    testimonialsContainer.innerHTML = '';
-
-    formattedReviews.forEach(review => {
-      const stars = '★'.repeat(review.rating);
-
-      const testimonialHtml = `
-        <blockquote class="testimonial reveal">
-          <cite>${review.author}</cite>
-          <span class="review-stars">${stars}</span>
-          <p>${review.text}</p>
-          <span class="review-time">${review.formattedDate}</span>
-        </blockquote>
-      `;
-
-      testimonialsContainer.insertAdjacentHTML('beforeend', testimonialHtml);
-    });
-
-    initRevealOnScroll();
-  } catch (error) {
-    console.error('Failed to load reviews:', error);
-  }
 }
