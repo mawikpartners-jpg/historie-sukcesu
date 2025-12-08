@@ -126,6 +126,11 @@ function initFormSubmit() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    if (!form.rodo.checked) {
+      alert('Musisz zaakceptować zgodę na przetwarzanie danych osobowych.');
+      return;
+    }
+
     const formData = {
       name: form.name.value,
       phone: form.phone.value,
