@@ -312,6 +312,82 @@ a:hover {
   opacity: 0.8;
 }
 
+.testimonial-expand {
+  margin-top: 1rem;
+  border: 2px solid rgba(15, 28, 46, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #fafaf8 0%, var(--surface) 100%);
+  transition: all 0.3s ease;
+}
+
+.testimonial-expand:hover {
+  border-color: rgba(15, 28, 46, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-expand summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.testimonial-expand summary::-webkit-details-marker {
+  display: none;
+}
+
+.testimonial-expand summary::after {
+  content: '▼';
+  font-size: 0.875rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.testimonial-expand[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.testimonial-expand summary:hover {
+  color: var(--accent-light);
+}
+
+.testimonial-expand ul {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.testimonial-expand li {
+  position: relative;
+  margin-bottom: 0.875rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  padding-left: 1.25rem;
+}
+
+.testimonial-expand li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.testimonial-expand li:last-child {
+  margin-bottom: 0;
+}
+
 .section-cta {
   text-align: center;
   margin-top: 1.5rem;
