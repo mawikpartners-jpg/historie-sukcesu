@@ -119,10 +119,11 @@ function initSmoothScroll() {
 function initFormSubmit() {
   const form = document.getElementById('contact-form');
   const successMessage = document.getElementById('form-success');
+  const submitButton = form?.querySelector('button[type="submit"]');
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = {
@@ -135,13 +136,42 @@ function initFormSubmit() {
     console.log('Form submitted:', formData);
     console.log('Event: form_submit');
 
-    form.reset();
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Wysyłanie...';
+    }
 
-    if (successMessage) {
-      successMessage.style.display = 'block';
-      setTimeout(() => {
-        successMessage.style.display = 'none';
-      }, 5000);
+    try {
+      const response = await fetch('https://n8n.procesflow.pl/webhook-test/cf813640-38d0-4762-b27b-54c5dae6cde7', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        console.log('Form sent successfully to webhook');
+        form.reset();
+
+        if (successMessage) {
+          successMessage.style.display = 'block';
+          setTimeout(() => {
+            successMessage.style.display = 'none';
+          }, 5000);
+        }
+      } else {
+        console.error('Webhook error:', response.status);
+        alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Wyślij';
+      }
     }
   });
 }
