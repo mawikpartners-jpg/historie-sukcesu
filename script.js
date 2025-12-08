@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initFormSubmit();
   initEventTracking();
+  initAccordions();
 });
 
 function initMobileNav() {
@@ -168,6 +169,20 @@ function initEventTracking() {
   document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline').forEach(button => {
     button.addEventListener('click', () => {
       console.log('Event: cta_click', button.textContent.trim());
+    });
+  });
+}
+
+function initAccordions() {
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+      header.setAttribute('aria-expanded', !isExpanded);
+      content.classList.toggle('active');
     });
   });
 }
