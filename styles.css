@@ -928,6 +928,21 @@ a:hover {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.footer p a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.footer p a:hover {
+  color: #fbbf24;
+  text-decoration-color: #fbbf24;
+  opacity: 1;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
