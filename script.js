@@ -147,7 +147,7 @@ function initFormSubmit() {
     }
 
     try {
-      const response = await fetch('https://n8n.procesflow.pl/webhook-test/cf813640-38d0-4762-b27b-54c5dae6cde7', {
+      const response = await fetch('https://n8n.procesflow.pl/webhook/cf813640-38d0-4762-b27b-54c5dae6cde7', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
