@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Zarządzanie Opiniami Google</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #f5f5f5;
+        padding: 24px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #0F1C2E;
+        margin-bottom: 32px;
+        font-size: 32px;
+      }
+
+      .admin-section {
+        background: white;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 32px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #0F1C2E;
+        margin-bottom: 24px;
+        font-size: 24px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #0F1C2E;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="datetime-local"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: inherit;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: #0F1C2E;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: #0F1C2E;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #1a2d45;
+      }
+
+      .btn-danger {
+        background: #dc2626;
+        color: white;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .btn-danger:hover {
+        background: #b91c1c;
+      }
+
+      .message {
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        display: none;
+      }
+
+      .message.success {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #10b981;
+      }
+
+      .message.error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #ef4444;
+      }
+
+      .message.show {
+        display: block;
+      }
+
+      .reviews-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .review-item {
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        padding: 20px;
+        background: #fafafa;
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 12px;
+      }
+
+      .review-info {
+        flex: 1;
+      }
+
+      .reviewer-name {
+        font-weight: 600;
+        color: #0F1C2E;
+        margin-bottom: 4px;
+      }
+
+      .review-meta {
+        font-size: 14px;
+        color: #6b7280;
+      }
+
+      .stars {
+        color: #fbbf24;
+        font-size: 18px;
+      }
+
+      .review-text {
+        margin: 12px 0;
+        color: #374151;
+      }
+
+      .review-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #6b7280;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b7280;
+      }
+
+      .required {
+        color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Panel Administracyjny - Opinie Google</h1>
+
+      <div class="admin-section">
+        <h2>Dodaj Nową Opinię</h2>
+
+        <div id="message" class="message"></div>
+
+        <form id="add-review-form">
+          <div class="form-group">
+            <label for="reviewer_name">Imię i nazwisko <span class="required">*</span></label>
+            <input type="text" id="reviewer_name" name="reviewer_name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Ocena (1-5 gwiazdek) <span class="required">*</span></label>
+            <select id="rating" name="rating" required>
+              <option value="">Wybierz ocenę</option>
+              <option value="5">5 ★★★★★</option>
+              <option value="4">4 ★★★★</option>
+              <option value="3">3 ★★★</option>
+              <option value="2">2 ★★</option>
+              <option value="1">1 ★</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="review_text">Treść opinii <span class="required">*</span></label>
+            <textarea id="review_text" name="review_text" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="review_date">Data opinii <span class="required">*</span></label>
+            <input type="datetime-local" id="review_date" name="review_date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="location">Lokalizacja biura</label>
+            <select id="location" name="location">
+              <option value="">Wybierz lokalizację</option>
+              <option value="Biała Podlaska">Biała Podlaska</option>
+              <option value="Chełm">Chełm</option>
+              <option value="Zamość">Zamość</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Dodaj Opinię</button>
+        </form>
+      </div>
+
+      <div class="admin-section">
+        <h2>Lista Opinii</h2>
+        <div id="reviews-container" class="loading">Ładowanie opinii...</div>
+      </div>
+    </div>
+
+    <script type="module" src="/admin-reviews.js"></script>
+  </body>
+</html>
