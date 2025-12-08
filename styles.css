@@ -1093,69 +1093,6 @@ body.nav-open {
   }
 }
 
-.testimonial-accordion {
-  margin: 3rem 0 2rem;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.accordion-header {
-  width: 100%;
-  padding: 1.5rem;
-  background: white;
-  border: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: inherit;
-}
-
-.accordion-header:hover {
-  background-color: #f8f9fa;
-}
-
-.accordion-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--fg);
-  text-align: left;
-}
-
-.accordion-icon {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--accent);
-  transition: transform 0.3s ease;
-  line-height: 1;
-}
-
-.accordion-header[aria-expanded="true"] .accordion-icon {
-  transform: rotate(45deg);
-}
-
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 1.5rem;
-}
-
-.accordion-content.active {
-  max-height: 1000px;
-  padding: 0 1.5rem 1.5rem;
-}
-
-.accordion-content p {
-  line-height: 1.7;
-  color: var(--fg);
-  margin-bottom: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
