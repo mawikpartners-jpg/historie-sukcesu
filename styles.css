@@ -290,20 +290,6 @@ a:hover {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
-  background-color: #000;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-}
-
-.video-wrapper video::-webkit-media-controls {
-  visibility: visible;
-}
-
-.video-wrapper video::-webkit-media-controls-panel {
-  display: flex !important;
-  opacity: 1 !important;
 }
 
 .video-card h3 {
